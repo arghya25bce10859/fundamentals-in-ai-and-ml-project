@@ -4,7 +4,7 @@ import heapq
 a = input("Enter start node from A to F")
 b = input("Enter finish node from A to F")
 
-# 1. Define the Graph (Nodes and Edge Weights)
+
 graph = {
     'A': [('B', 1), ('C', 4)],
     'B': [('A', 1), ('D', 5), ('E', 2)],
@@ -14,7 +14,7 @@ graph = {
     'F': [('C', 3), ('E', 1)]
 }
 
-# 2. Breadth-First Search (BFS) - Finds the shortest path in unweighted graphs
+# Bredth First Search
 def bfs(start, goal):
     queue = collections.deque([[start]])
     visited = set([start])
@@ -27,8 +27,8 @@ def bfs(start, goal):
                 visited.add(neighbor)
                 queue.append(path + [neighbor])
 
-# 3. A* Search - Uses Heuristics for efficiency
-# Simple Heuristic: Estimated distance to goal 'F'
+# A* Search
+# Heuristic values
 heuristic = {'A': 6, 'B': 5, 'C': 2, 'D': 7, 'E': 1, 'F': 0}
 
 def a_star(start, goal):
@@ -48,7 +48,7 @@ def a_star(start, goal):
                 priority = new_cost + heuristic[neighbor]
                 heapq.heappush(pq, (priority, new_cost, path + [neighbor]))
 
-# --- Execution ---
+# Execute search
 print("BFS Path for given nodes:", bfs(a,b))
 path_astar, cost_astar = a_star(a,b)
 print(f"A* Path to F: {path_astar} with Cost: {cost_astar}")
